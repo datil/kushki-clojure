@@ -3,14 +3,17 @@
 
 (set-env! :resource-paths #{"resources"}
           :source-paths   #{"src" "test"}
-          :dependencies   '[[org.clojure/clojure "1.9.0-RC1"]
-                            [adzerk/boot-test "RELEASE" :scope "test"]
+          :dependencies   '[[adzerk/boot-test "RELEASE" :scope "test"]
                             [environ "1.1.0"]
                             [boot-environ "1.1.0"]
                             [clj-http "3.7.0"]
                             [cheshire "5.8.0"]
-                            [boot-codox "0.10.3" :scope "test"]])
+                            [boot-codox "0.10.3" :scope "test"]
+                            [adzerk/bootlaces "0.1.13" :scope "test"]])
 
+(require '[adzerk.bootlaces :refer :all])
+(def +version+ "0.1.0")
+(bootlaces! +version+)
 
 (task-options!
  pom {:project     project
