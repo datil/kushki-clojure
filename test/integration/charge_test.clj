@@ -154,10 +154,11 @@
                            :currency "USD"}
                   :months 0}
           charge-resp (create-charge ec-test-client charge)
-          void-resp (void-charge
-                     ec-test-client
-                     (:ticketNumber charge-resp)
-                     (dissoc charge :token))]
+          void-resp (do (Thread/sleep 5000)
+                        (void-charge
+                         ec-test-client
+                         (:ticketNumber charge-resp)
+                         (dissoc charge :token)))]
       (is (contains? charge-resp :ticketNumber))
       (is (contains? void-resp :ticketNumber)))))
 
